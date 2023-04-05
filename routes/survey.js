@@ -1,11 +1,11 @@
 var express = require('express');
 var router = express.Router();
-const helper = require('./helper');
+const helper = require('../helpers/user.js');
 
 
 router.get('/', (req, res) => {
     helper.testFunction().then((result) => {
-        res.send(result);
+        res.send("Survey - " + result);
     });
 });
 

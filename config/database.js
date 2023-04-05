@@ -8,5 +8,9 @@ module.exports = {
         }).catch((error) => {
             console.log(error);
         });
+    },
+
+    collection: (name) => {
+        return mongoose.connection.db.collection(name);
     }
 };
