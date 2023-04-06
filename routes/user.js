@@ -8,11 +8,11 @@ router.post('/signup', (req, res) => {
         res.status(result.status).json(
             {
                 message : result.message,
-                user : result.user
+                result : result.result
             }
         );
     }).catch((err) => {
-        res.status(err.status).json( {message : err.message} );
+        res.status(err.status).json({ message : err.message });
     });
 });
 
@@ -22,12 +22,11 @@ router.post('/login', (req, res) => {
         res.status(result.status).json(
             {
                 message : result.message,
-                user : result.user,
                 token : result.token
             }
         );
     }).catch((err) => {
-        res.status(err.status).json( {message : err.message} );
+        res.status(err.status).json({ message : err.message });
     });
 });
 

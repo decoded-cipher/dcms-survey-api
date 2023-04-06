@@ -14,7 +14,10 @@ module.exports = {
                 name: req.body.name,
                 email: req.body.email,
                 password: bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(5), null),
-                type: "user"
+                type: "user",
+                status: "active",
+                created_at: new Date(),
+                updated_at: new Date()
             };
 
             db.collection('users').findOne({email: user.email}, (err, result) => {
@@ -34,7 +37,7 @@ module.exports = {
                                 resolve({
                                     status: 200,
                                     message: "User created successfully",
-                                    user: user
+                                    result: result
                                 });
                             }
                         });
@@ -65,7 +68,6 @@ module.exports = {
                             resolve({
                                 status: 200,
                                 message: "User logged in successfully",
-                                user: result,
                                 token: jwt.sign({id: result.id, email: result.email}, process.env.JWT_SECRET)
                             });
                         } else {
