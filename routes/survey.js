@@ -46,6 +46,47 @@ router.post('/create', (req, res) => {
 });
 
 
+router.get('/house/:id', (req, res) => {
+    helper.getHouseById(req, res).then((result) => {
+        res.status(result.status).json(
+            {
+                message : result.message,
+                result : result.result
+            }
+        );
+    }).catch((err) => {
+        res.status(err.status).json(
+            {
+                message : err.message,
+                error : err.error
+            }
+        );
+    });
+});
+
+
+router.get('/member/:id', (req, res) => {
+    helper.getMemberById(req, res).then((result) => {
+        res.status(result.status).json(
+            {
+                message : result.message,
+                result : result.result
+            }
+        );
+    }).catch((err) => {
+        res.status(err.status).json(
+            {
+                message : err.message,
+                error : err.error
+            }
+        );
+    });
+});
+
+
+
+
+
 
 
 
