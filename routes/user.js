@@ -19,12 +19,7 @@ router.post('/signup', (req, res) => {
 
 router.post('/login', (req, res) => {
     helper.userLogin(req, res).then((result) => {
-        res.status(result.status).json(
-            {
-                message : result.message,
-                token : result.token
-            }
-        );
+        res.status(result.status).json(result);
     }).catch((err) => {
         res.status(err.status).json({ message : err.message });
     });
