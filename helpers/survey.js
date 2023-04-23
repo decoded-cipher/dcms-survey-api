@@ -11,17 +11,19 @@ module.exports = {
 
             var total_members = [];
             var house_id = uuid();
+            var familyLength = Object.keys(req.body.familyDetails).length;
 
-            for (var i = 0; i < req.body.members.length; i++) {
+
+            for (var i = 0; i < familyLength; i++) {
                 
                 var member = {
                     id : uuid(),
                     house_id : house_id
                 };
 
-                for (var key in req.body.members[i]) {
-                    if (req.body.members[i].hasOwnProperty(key)) {
-                        member[key] = req.body.members[i][key];
+                for (var key in req.body.familyDetails[i]) {
+                    if (req.body.familyDetails[i].hasOwnProperty(key)) {
+                        member[key] = req.body.familyDetails[i][key];
                     } else {
                         member[key] = null;
                     }
@@ -49,9 +51,8 @@ module.exports = {
                         id : house_id,
                         creator : req.authData.id,
 
-                        personal_details : req.body.personal_details,
-                        economic_details : req.body.economic_details,
-                        dcmsMember : req.body.dcmsMember,
+                        generalInfo : req.body.generalInfo,
+                        socioEconomic : req.body.socioEconomic,
 
                         total_members : total_members.map((member) => member.id),
 
@@ -80,8 +81,6 @@ module.exports = {
 
                 }
             });
-
-            
 
         });
     },
