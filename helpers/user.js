@@ -68,7 +68,12 @@ module.exports = {
                             resolve({
                                 status: 200,
                                 message: "User logged in successfully",
-                                token: jwt.sign({id: result.id, email: result.email}, process.env.JWT_SECRET)
+                                token: jwt.sign({id: result.id, email: result.email}, process.env.JWT_SECRET),
+                                user: {
+                                    name: result.name,
+                                    email: result.email,
+                                    avatar: "https://flowbite.com/application-ui/demo/images/users/neil-sims.png",
+                                }
                             });
                         } else {
                             reject({
